@@ -8,6 +8,11 @@ using namespace std;
 int maxruntime = 0;
 
 void BogoSort(list<int>& l);
+
+/// <summary>
+/// Prints the list
+/// </summary>
+/// <returns></returns>
 void Print(list<int>& l)
 {
     while (!l.empty() or l.size() > 0)
@@ -17,11 +22,14 @@ void Print(list<int>& l)
     }
     cout << "iterations " << maxruntime << "\n";
 }
-/// <summary>
-/// Prints the list
-/// </summary>
-/// <returns></returns>
 
+
+
+/// <summary>
+/// Checks if the list is sorted 
+/// </summary>
+/// <param name="list"></param>
+/// <returns></returns>
 bool isSorted(list<int> list) {
     int front;
 
@@ -43,8 +51,26 @@ bool isSorted(list<int> list) {
         }
         isSorted(list);
     }
+
+    //auto it = list.begin();
+    //auto prev = it++;
+
+    //while (it != list.end()) {
+    //    if (*prev > *it) {
+    //        cout << "not sorted\n";
+    //        return false;
+    //    }
+    //    ++prev;
+    //    ++it;
+    //}
+    //cout << "sorted\n";
+    //return true;
 }
 
+/// <summary>
+/// Randomises the numbers in the list and their position 
+/// </summary>
+/// <param name="l"></param>
 void shuffleList(list<int>& l)
 {
     vector<list<int>::iterator> iterators;
@@ -69,6 +95,10 @@ void shuffleList(list<int>& l)
 
 }
 
+/// <summary>
+/// RunsBogo sort
+/// </summary>
+/// <param name="l"></param>
 void BogoSort(list<int>& l)
 {
     maxruntime += 1;
@@ -76,9 +106,25 @@ void BogoSort(list<int>& l)
         return;
     else
     {
-        //shuffleList(l);
-        
-        BogoSort(l);
+        vector<list<int>::iterator> iterators;
+        list<int> shuffledList;
+
+        srand(static_cast<unsigned int>(time(nullptr)));
+        random_device rd;
+        mt19937 g(rd());
+
+        for (auto it = l.begin(); it != l.end(); ++it)
+        {
+            iterators.push_back(it);
+        }
+        shuffle(iterators.begin(), iterators.end(), g);
+
+        for (const auto& it : iterators)
+        {
+            shuffledList.push_back(*it);
+        }
+        BogoSort(shuffledList);
+        //BogoSort(l);
     }
 
 
@@ -87,7 +133,7 @@ void BogoSort(list<int>& l)
 
 int main()
 {
-    int maxValue = 4;
+    int maxValue = 3;
     list<int> mL;
     srand(time(NULL));
     for (int i = 0; i < maxValue; i++)
