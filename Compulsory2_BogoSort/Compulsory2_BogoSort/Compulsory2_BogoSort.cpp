@@ -4,10 +4,11 @@
 #include <random>
 
 using namespace std;
-
+int ListSize = 0;
 int maxruntime = 0;
 
 void BogoSort(list<int>& l);
+bool isSorted(list<int> list);
 
 /// <summary>
 /// Prints the list
@@ -15,6 +16,15 @@ void BogoSort(list<int>& l);
 /// <returns></returns>
 void Print(list<int>& l)
 {
+    cout << "ListSize " << ListSize << "\n";
+    if (isSorted(l) == false)
+    {
+        cout << "not Sorted\n";
+    }
+    else
+    {
+        cout << "Sorted\n";
+    }
     while (!l.empty() or l.size() > 0)
     {
         cout << l.front() << "\n";
@@ -31,44 +41,25 @@ void Print(list<int>& l)
 /// <param name="list"></param>
 /// <returns></returns>
 bool isSorted(list<int> list) {
-    int front;
+   
+    auto it = list.begin();
+    auto prev = it++;
 
-    if (list.empty() or list.size() <= 1)
-    {
-        cout << "Sorted\n";
-        return true;
-
-    }
-
-    else
-    {
-        front = list.front();
-        list.pop_front();
-        if (front > list.front())
-        {
-            cout << "not Sorted\n";
+    while (it != list.end()) {
+        if (*prev > *it) {
+           // cout << "not sorted\n";
             return false;
         }
-        isSorted(list);
+        ++prev;
+        ++it;
     }
-
-    //auto it = list.begin();
-    //auto prev = it++;
-
-    //while (it != list.end()) {
-    //    if (*prev > *it) {
-    //        cout << "not sorted\n";
-    //        return false;
-    //    }
-    //    ++prev;
-    //    ++it;
-    //}
     //cout << "sorted\n";
-    //return true;
+    return true;
 }
 
 /// <summary>
 /// Randomises the numbers in the list and their position 
+/// did not need to have it's own void 
 /// </summary>
 /// <param name="l"></param>
 void shuffleList(list<int>& l)
@@ -96,56 +87,61 @@ void shuffleList(list<int>& l)
 }
 
 /// <summary>
-/// RunsBogo sort
+/// RunsBogo sort.
+/// BogoSort works better as iterative rather than Recursive because VS thinks a recursive funksion is an infinateloop a little overt 1k iterations.
+/// so with a itterative funksion i can run it 100k or more if i want. 
 /// </summary>
 /// <param name="l"></param>
 void BogoSort(list<int>& l)
 {
-    maxruntime += 1;
-    if (isSorted(l) || maxruntime == 1000)
-        return;
-    else
+    if (isSorted(l))
     {
-        vector<list<int>::iterator> iterators;
-        list<int> shuffledList;
-
-        srand(static_cast<unsigned int>(time(nullptr)));
-        random_device rd;
-        mt19937 g(rd());
-
-        for (auto it = l.begin(); it != l.end(); ++it)
+        return;
+    }
+    else{
+        while (!isSorted(l) && maxruntime < 100000)
         {
-            iterators.push_back(it);
-        }
-        shuffle(iterators.begin(), iterators.end(), g);
+            maxruntime++;
+            vector<list<int>::iterator> iterators;
+            list<int> shuffledList;
 
-        for (const auto& it : iterators)
-        {
-            shuffledList.push_back(*it);
+            srand(static_cast<unsigned int>(time(nullptr)));
+            random_device rd;
+            mt19937 g(rd());
+
+            for (auto it = l.begin(); it != l.end(); ++it)
+            {
+                iterators.push_back(it);
+            }
+            shuffle(iterators.begin(), iterators.end(), g);
+
+            for (const auto& it : iterators)
+            {
+                shuffledList.push_back(*it);
+            }
+            shuffledList.swap(l);
+            if (isSorted(l))
+            {
+                return;
+            }
         }
-        BogoSort(shuffledList);
-        //BogoSort(l);
+        return;
     }
 
 
 }
 
-
 int main()
 {
-    int maxValue = 3;
+    ListSize = 8;
+
     list<int> mL;
     srand(time(NULL));
-    for (int i = 0; i < maxValue; i++)
+    for (int i = 0; i < ListSize; i++)
     {
-
         mL.push_back(rand() % 10000 + 1);
     }
     BogoSort(mL);
     Print(mL);
-    if (maxruntime == 1000)
-    {
-        cout << "FailSafe\n";
-    }
 
 }
