@@ -99,7 +99,7 @@ void BogoSort(list<int>& l)
         return;
     }
     else{
-        while (!isSorted(l) && maxruntime < 100000)
+        while (!isSorted(l) && maxruntime < 1000000)
         {
             maxruntime++;
             vector<list<int>::iterator> iterators;
@@ -133,7 +133,7 @@ void BogoSort(list<int>& l)
 
 int main()
 {
-    ListSize = 8;
+    ListSize = 10;
 
     list<int> mL;
     srand(time(NULL));
