@@ -74,6 +74,7 @@ void Sort(list<int>& list)
         ++next;
     }
 }
+ 
 void BubleSort(list<int>& list)
 {
     if (isSorted(list))
@@ -94,7 +95,7 @@ void BubleSort(list<int>& list)
 
 int main()
 {
-    int listSize = 1000;
+    int listSize = 100;
     list<int> mList;
     srand(time(NULL));
     for (int i = 0; i < listSize; i++)

@@ -64,46 +64,55 @@ bool isSorted(list<int> list)
     return true;
     }
 
-void Sort(list<int>& list)
+void QuickSort(list<int>& list)
 {
-        auto it = list.begin();
-        auto next = std::next(it);
-        while (next != list.end()) {
-            if (*it > *next) {
-                iter_swap(it, next);
-            }
-            ++it;
-            ++next;
-        }
-}
-void BubleSort(list<int>& list)
-{
-    if (isSorted(list))
+    std::list<int> lesser;
+    std::list<int> equal;
+    std::list<int> greater;
+
+    if (list.size() <= 1)
     {
         return;
     }
     else
     {
-        Sort(list);
-        if (isSorted(list))
+        auto it = list.begin();
+        auto Pivot = list.front();
+        while (it != list.end())
         {
-            return;
+            if (*it < Pivot)
+            {
+                lesser.push_back(*it);
+            }
+            else if (*it > Pivot)
+            {
+                greater.push_back(*it);
+            }
+            else
+            {
+                equal.push_back(*it);
+            }
+            ++it;
         }
-
-        BubleSort(list);
+        QuickSort(lesser);
+        QuickSort(greater);
+        list.clear();
+        list.splice(list.end(), lesser);
+        list.splice(list.end(), equal);
+        list.splice(list.end(), greater);
     }
 }
 
 int main()
 {
-    int listSize = 1000;
+    int listSize = 100000;
     list<int> mList;
     srand(time(NULL));
     for (int i = 0; i < listSize; i++)
     {
         mList.push_back(rand() % 10000 + 1);
     }
-    BubleSort(mList);
+    QuickSort(mList);
     Print(mList);
 
 }
