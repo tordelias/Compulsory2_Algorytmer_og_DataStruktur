@@ -1,0 +1,3 @@
+﻿  Compulsory2_BubbleSort.cpp
+C:\Github\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_BubbleSort\Compulsory2_BubbleSort\Compulsory2_BubbleSort.cpp(99,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Compulsory2_BubbleSort.vcxproj -> C:\Github\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_BubbleSort\x64\Debug\Compulsory2_BubbleSort.exe
