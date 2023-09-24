@@ -2,11 +2,11 @@
 
 #include <iostream>
 #include <list>
-#include <algorithm>
+#include <chrono>
 
 
 using namespace std;
-bool isSorted(list<int> list);
+bool isSorted(const list<int> list);
 
 /// <summary>
 /// Prints the list
@@ -14,22 +14,13 @@ bool isSorted(list<int> list);
 /// <returns></returns>
 void Print(list<int>& l)
 {
-    bool Sorted = false;
-    if (!isSorted(l))
-    {
-        Sorted = false;
-    }
-    else
-    {
-        Sorted = true;
-    }
     while (!l.empty() or l.size() > 0)
     {
         cout << l.front() << "\n";
         l.pop_front();
     }
 
-    if (!Sorted)
+    if (!isSorted)
     {
         cout << " not sorted\n";
     }
@@ -46,8 +37,12 @@ void Print(list<int>& l)
 /// </summary>
 /// <param name="list"></param>
 /// <returns></returns>
-bool isSorted(list<int> list) 
+bool isSorted(const list<int> list) 
 {
+    if (list.size() <= 1 or list.empty() == true)
+    {
+        return true;
+    }
 
     auto it = list.begin();
     auto prev = it++;
@@ -64,6 +59,10 @@ bool isSorted(list<int> list)
     return true;
     }
 
+/// <summary>
+/// i'm splitting the list bassed on the pivot, then putting them all together at the end
+/// </summary>
+/// <param name="list"></param>
 void QuickSort(list<int>& list)
 {
     std::list<int> lesser;
@@ -77,7 +76,7 @@ void QuickSort(list<int>& list)
     else
     {
         auto it = list.begin();
-        auto Pivot = list.front();
+        auto const Pivot = list.front();
         while (it != list.end())
         {
             if (*it < Pivot)
@@ -105,15 +104,18 @@ void QuickSort(list<int>& list)
 
 int main()
 {
-    int listSize = 100000;
+    int listSize = 1000000;
     list<int> mList;
     srand(time(NULL));
     for (int i = 0; i < listSize; i++)
     {
         mList.push_back(rand() % 10000 + 1);
     }
+    auto start = std::chrono::high_resolution_clock::now();
     QuickSort(mList);
+    auto end = std::chrono::high_resolution_clock::now();
     Print(mList);
+    std::cout << "Time taken" << std::chrono::duration_cast<std::chrono::milliseconds>((end)-(start)).count() << " ms" << std::endl;
 
 }
 

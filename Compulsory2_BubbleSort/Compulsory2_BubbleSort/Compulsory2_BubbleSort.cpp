@@ -1,10 +1,11 @@
 #include <iostream>
 #include <list>
 #include <algorithm>
+#include <chrono>
 
 
 using namespace std;
-bool isSorted(list<int> list);
+bool isSorted(const list<int> list);
 
 /// <summary>
 /// Prints the list
@@ -12,29 +13,20 @@ bool isSorted(list<int> list);
 /// <returns></returns>
 void Print(list<int>& l)
 {
-    bool Sorted = false;
-    if (!isSorted(l))
-    {
-        Sorted = false;
-    }
-    else
-    {
-        Sorted = true;
-    }
     while (!l.empty() or l.size() > 0)
     {
         cout << l.front() << "\n";
         l.pop_front();
     }
 
-    if (!Sorted)
-    {
-        cout << " not sorted\n";
-    }
-    else
-    {
-        cout << "sorted\n";
-    }
+    //if (!isSorted)
+    //{
+    //    cout << " not sorted\n";
+    //}
+    //else
+    //{
+    //    cout << "sorted\n";
+    //}
 
 
 }
@@ -44,8 +36,12 @@ void Print(list<int>& l)
 /// </summary>
 /// <param name="list"></param>
 /// <returns></returns>
-bool isSorted(list<int> list)
+bool isSorted(const list<int> list)
 {
+    if (list.size() <= 1 or list.empty() == true)
+    {
+        return true;
+    }
 
     auto it = list.begin();
     auto prev = it++;
@@ -62,47 +58,58 @@ bool isSorted(list<int> list)
     return true;
 }
 
-void Sort(list<int>& list)
+void sort(list<int>& l, list<int>::iterator current, list<int>::iterator next)
 {
-    auto it = list.begin();
-    auto next = std::next(it);
-    while (next != list.end()) {
-        if (*it > *next) {
-            iter_swap(it, next);
-        }
-        ++it;
-        ++next;
+    if (next == l.end())
+        return;
+    if (*current > *next)
+    {
+        iter_swap(current, next);
     }
+    sort(l, current, next);
 }
+
  
 void BubleSort(list<int>& list)
 {
+    //if (isSorted(list))
+    //    return;
+    //sort(list, list.begin(), std::next(list.begin()));
+    //BubleSort(list);
     if (isSorted(list))
     {
         return;
     }
-    else
+    else //should use while(!isSorted(list); but need another recursion 
     {
-        Sort(list);
-        if (isSorted(list))
-        {
-            return;
+        auto it = list.begin();
+        auto next = std::next(it);
+        while (next != list.end()) {
+            if (*it > *next) {
+                iter_swap(it, next);
+            }
+            ++it;
+            ++next;
         }
 
         BubleSort(list);
     }
+
 }
 
 int main()
 {
-    int listSize = 100;
+    int listSize = 100; // 1393 is the max size bubbleSort can do with recursion 
     list<int> mList;
     srand(time(NULL));
     for (int i = 0; i < listSize; i++)
     {
         mList.push_back(rand() % 10000 + 1);
     }
+    auto start = std::chrono::high_resolution_clock::now();
     BubleSort(mList);
+    auto end = std::chrono::high_resolution_clock::now();
     Print(mList);
+    std::cout << "Time taken " << std::chrono::duration_cast<std::chrono::milliseconds>((end)-(start)).count() << " ms" << std::endl;
 
 }

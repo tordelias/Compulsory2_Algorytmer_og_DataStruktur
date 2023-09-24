@@ -1,3 +1,4 @@
 ﻿  Compulsory2_QuickSort.cpp
-E:\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_QuickSort\Compulsory2_QuickSort\Compulsory2_QuickSort.cpp(110,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+E:\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_QuickSort\Compulsory2_QuickSort\Compulsory2_QuickSort.cpp(23,9): warning C4551: function call missing argument list
+E:\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_QuickSort\Compulsory2_QuickSort\Compulsory2_QuickSort.cpp(109,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Compulsory2_QuickSort.vcxproj -> E:\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_QuickSort\x64\Debug\Compulsory2_QuickSort.exe
