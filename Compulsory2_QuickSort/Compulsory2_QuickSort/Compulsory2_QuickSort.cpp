@@ -104,7 +104,7 @@ void QuickSort(list<int>& list)
 
 int main()
 {
-    int listSize = 1000000;
+    int listSize = 10000;
     list<int> mList;
     srand(time(NULL));
     for (int i = 0; i < listSize; i++)

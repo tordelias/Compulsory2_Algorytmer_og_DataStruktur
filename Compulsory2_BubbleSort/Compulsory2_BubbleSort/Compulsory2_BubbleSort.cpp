@@ -58,48 +58,50 @@ bool isSorted(const list<int> list)
     return true;
 }
 
-void sort(list<int>& l, list<int>::iterator current, list<int>::iterator next)
-{
-    if (next == l.end())
-        return;
-    if (*current > *next)
-    {
-        iter_swap(current, next);
-    }
-    sort(l, current, next);
-}
 
  
 void BubleSort(list<int>& list)
 {
-    //if (isSorted(list))
-    //    return;
-    //sort(list, list.begin(), std::next(list.begin()));
-    //BubleSort(list);
     if (isSorted(list))
     {
         return;
     }
     else //should use while(!isSorted(list); but need another recursion 
     {
-        auto it = list.begin();
-        auto next = std::next(it);
-        while (next != list.end()) {
-            if (*it > *next) {
-                iter_swap(it, next);
+            auto it = list.begin();
+            auto next = std::next(it);
+            while (next != list.end()) {
+                if (*it > *next) {
+                    iter_swap(it, next);
+                }
+                ++it;
+                ++next;
             }
-            ++it;
-            ++next;
-        }
+
 
         BubleSort(list);
     }
+
+    // iterative approach
+    // 
+    //do {
+    //    auto it = list.begin();
+    //    auto next = std::next(it);
+    //    while (next != list.end()) {
+    //        if (*it > *next) {
+    //            iter_swap(it, next);
+    //        }
+    //        ++it;
+    //        ++next;
+    //    }
+
+    //} while (!isSorted(list));
 
 }
 
 int main()
 {
-    int listSize = 100; // 1393 is the max size bubbleSort can do with recursion 
+    int listSize = 10000; // 1393 is the max size bubbleSort can do with recursion 
     list<int> mList;
     srand(time(NULL));
     for (int i = 0; i < listSize; i++)

@@ -112,7 +112,7 @@ void BogoSort(list<int>& l)
 
 int main()
 {
-    ListSize = 0;
+    ListSize = 10;
 
     list<int> mL;
     srand(time(NULL));
