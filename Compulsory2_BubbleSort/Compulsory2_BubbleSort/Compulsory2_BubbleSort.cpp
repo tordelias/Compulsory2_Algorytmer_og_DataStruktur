@@ -59,7 +59,10 @@ bool isSorted(const list<int> list)
 }
 
 
- 
+/// <summary>
+/// Sorts the list by checking if the number beside it is bigger or smaller then swaping them 
+/// </summary>
+/// <param name="list"></param>
 void BubleSort(list<int>& list)
 {
     if (isSorted(list))

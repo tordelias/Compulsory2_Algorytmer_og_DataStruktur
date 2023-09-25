@@ -120,6 +120,10 @@ void BogoSort(list<int>& l)
 
 }
 
+/// <summary>
+/// Sorts the list by checking if the number beside it is bigger or smaller then swaping them 
+/// </summary>
+/// <param name="list"></param>
 void BubleSort(list<int>& list)
 {
    if(bubblerecursive)
@@ -149,18 +153,19 @@ void BubleSort(list<int>& list)
 
    else
     {
-        do {
+       while (!isSorted(list)) 
+       {
             auto it = list.begin();
             auto next = std::next(it);
             while (next != list.end()) {
                 if (*it > *next) {
-                    iter_swap(it, next);
+                    iter_swap(it, next); //switches places of what the iterators point to
                 }
                 ++it;
                 ++next;
             }
 
-        } while (!isSorted(list));
+        }
     }
 
 }
@@ -207,7 +212,10 @@ void QuickSort(list<int>& list)
         list.splice(list.end(), greater);
     }
 }
-
+/// <summary>
+/// The main rus the interface of the program 
+/// </summary>
+/// <returns></returns>
 int main()
 {
     bool Running = true;
@@ -215,6 +223,8 @@ int main()
     int bIterative;
     int continue1;
     list<int> list;
+    std::chrono::steady_clock::time_point start;
+    std::chrono::steady_clock::time_point end;
    
     while(Running)
     {
@@ -229,14 +239,13 @@ int main()
         }
         cout << "BogoSort = 1  BubbleSort = 2  QuickSort = 3\n";
         cin >> algorythm;
-        auto start = std::chrono::high_resolution_clock::now();
         switch (algorythm)
         {
         case 1:
             Bogo = true;
-           // auto start = std::chrono::high_resolution_clock::now();
+            start = std::chrono::high_resolution_clock::now();
             BogoSort(list);
-           // auto end = std::chrono::high_resolution_clock::now();
+            end = std::chrono::high_resolution_clock::now();
            // runTime = std::chrono::duration_cast<std::chrono::milliseconds>((end)-(start)).count();
             break;
         case 2:
@@ -256,16 +265,16 @@ int main()
                 cin >> bIterative;
                 break;
             }
-           // auto start = std::chrono::high_resolution_clock::now();
+            start = std::chrono::high_resolution_clock::now();
             BubleSort(list);
-           // auto end = std::chrono::high_resolution_clock::now();
+            end = std::chrono::high_resolution_clock::now();
            // runTime = std::chrono::duration_cast<std::chrono::milliseconds>((end)-(start)).count();
 
             break;
         case 3:
-           // auto start = std::chrono::high_resolution_clock::now();
+            start = std::chrono::high_resolution_clock::now();
             QuickSort(list);
-           // auto end = std::chrono::high_resolution_clock::now();
+            end = std::chrono::high_resolution_clock::now();
           //  runTime = std::chrono::duration_cast<std::chrono::milliseconds>((end)-(start)).count();
 
             break;

@@ -1,3 +1,3 @@
 ﻿  Compulsory2_All_Sorting_Algorythms.cpp
-E:\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_All_Sorting_Algorythms\Compulsory2_All_Sorting_Algorythms\Compulsory2_All_Sorting_Algorythms.cpp(225,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Compulsory2_All_Sorting_Algorythms.vcxproj -> E:\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_All_Sorting_Algorythms\x64\Debug\Compulsory2_All_Sorting_Algorythms.exe
+C:\Github\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_All_Sorting_Algorythms\Compulsory2_All_Sorting_Algorythms\Compulsory2_All_Sorting_Algorythms.cpp(235,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Compulsory2_All_Sorting_Algorythms.vcxproj -> C:\Github\Github\Compulsory2_Algorytmer_og_DataStruktur\Compulsory2_All_Sorting_Algorythms\x64\Debug\Compulsory2_All_Sorting_Algorythms.exe
