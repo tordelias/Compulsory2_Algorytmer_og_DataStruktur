@@ -1,4 +1,4 @@
 ﻿  MergeSort.cpp
-E:\Github\Compulsory2_Algorytmer_og_DataStruktur\MergeSort\MergeSort\MergeSort.cpp(10,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-E:\Github\Compulsory2_Algorytmer_og_DataStruktur\MergeSort\MergeSort\MergeSort.cpp(27): warning C4717: 'MergeSort': recursive on all control paths, function will cause runtime stack overflow
+E:\Github\Compulsory2_Algorytmer_og_DataStruktur\MergeSort\MergeSort\MergeSort.cpp(41,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+E:\Github\Compulsory2_Algorytmer_og_DataStruktur\MergeSort\MergeSort\MergeSort.cpp(71,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   MergeSort.vcxproj -> E:\Github\Compulsory2_Algorytmer_og_DataStruktur\MergeSort\x64\Debug\MergeSort.exe
